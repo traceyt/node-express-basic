@@ -1,11 +1,8 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const PORT = 3000;
 
 app.get('/', function(req, res) {
-    res.send('got a request from the server');
+    res.send('got a request from the server for requests!!');
 });
 
-app.listen(PORT, function() {
-    console.log('listening for requests');
-});
+export default app;

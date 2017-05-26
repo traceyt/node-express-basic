@@ -1,12 +1,33 @@
-var nodeExternals = require('webpack-node-externals');
+var path = require('path');
+var webpack = require('webpack');
+const nodeExternals = require("webpack-node-externals");
+const StartServerPlugin = require("start-server-webpack-plugin");
 
 module.exports = {
-    context: __dirname + "/src",
-    entry: "./app.js",
-    target: 'node', // in order to ignore built-in modules like path, fs, etc.
-    externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
+    entry: ["webpack/hot/poll?1000", "./src/dev"],
+    watch: true,
+    target: 'node',
+    externals: [nodeExternals({ whitelist: ["webpack/hot/poll?1000"] })],
     output: {
-        path: __dirname + "/dist",
-        filename: "bundle.js"
-    }
+        path: path.join(__dirname, './dist'),
+        filename: 'bundle.js',
+        publicPath: '/'
+    },
+    module: {
+        rules: [
+            { test: /\.js?$/, use: "babel-loader", exclude: /node_modules/ },
+        ],
+    },
+    plugins: [
+        new StartServerPlugin({
+            name: "bundle.js",
+            nodeArgs: ['--inspect'], // allow debugging
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
+        new webpack.DefinePlugin({
+            "process.env": { BUILD_TARGET: JSON.stringify("bundle.js") },
+        })
+    ]
 };
