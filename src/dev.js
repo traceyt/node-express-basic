@@ -1,3 +1,5 @@
+"use strict";
+
 import config from "./app.config";
 import http from "http";
 import app from "./app";

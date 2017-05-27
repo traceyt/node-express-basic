@@ -1,7 +1,9 @@
+"use strict";
+
 import express from 'express';
-var routesHello = require('./routes/hello')
+var routes = require('./routes/api')
 var app = express();
 
-app.use('/hello', routesHello);
+app.use('/api', routes);
 
 export default app;
