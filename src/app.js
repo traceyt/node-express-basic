@@ -1,8 +1,7 @@
 import express from 'express';
-const app = express();
+var routesHello = require('./routes/hello')
+var app = express();
 
-app.get('/', function(req, res) {
-    res.send('got a request from the server for requests again!!');
-});
+app.use('/hello', routesHello);
 
 export default app;
