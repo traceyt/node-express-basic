@@ -1,6 +1,6 @@
 "use strict";
 
-import config from "./app.config";
+import config from "../config/app.config";
 import http from "http";
 import app from "./app";
 

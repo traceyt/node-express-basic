@@ -1,5 +1,6 @@
 .DS_Store
 .vscode
+local.config
 node_modules
 etc
 dist

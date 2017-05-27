@@ -11,7 +11,7 @@
     "license": "ISC",
     "dependencies": {
         "express": "^4.15.3",
-        "request": "^2.81.0"
+        "applicationinsights": "^0.20.0"
     },
     "devDependencies": {
         "babel-core": "^6.24.1",
